@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+body{
+    padding-top: 80px;
+    height: 50px;
+    background-image: url(../img/fondo.jpg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+/*CABECERA*/
+header{
+    background-image: url(../img/planta.jpg);
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+
+}
+
+h1{
+    background-color:#41B6A8;
+    opacity: 0.7;
+    float: right;
+    width: 800px;
+    font-family: 'Courgette';
+    color: white;
+    font-size: 30pt;
+}
+
+#title{
+    font-size: 15pt;
+    font-style: italic;
+}
+
+/*NAVEGACION*/
+.panel-navegacion{
+    background-color: #DBDBDD;
+    padding: 2%;
+    position: fixed;
+    width: 100%;
+    top: 185px;
+    z-index: 1;
+}
+
+/*Cuando estamos en la pagina de la portada, se quedara marcada pasar saber en que pagina estamos*/
+#galeria{
+    background-color: #004700;
+    color: white;
+}
+
+.panel-navegacion li{
+    display: inline;
+    padding: 5%;
+    font-size: 15pt;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+/*Al pasar con el raton por encima del texto se aplicara lo siguiente*/
+.panel-navegacion a:hover{
+    background-color: #004700;
+    color: white;
+    font-size: 18pt;
+}
+
+main{
+    float: left;
+    width: 50%;
+    margin-left: 350px;
+    margin-top: 240px;
+    margin-bottom: 100px;
+    padding: 0 15px;
+    background-color: rgba(65, 182, 168, 0.8);
+    
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*SLIDER AUTOMATICO*/
+/*Caja donde va las fotos*/
+.slider{
+    width: 480px;
+    height: auto;
+    overflow: hidden;/*Ocultar las imagenes*/
+    margin-left: 220px;
+    padding: 0;
+    
+}
+
+/*Lista de las fotos*/
+.slider ul{
+    display: flex;/*Para que este una foto alado de la otra horizontalmente*/
+    padding: 0;
+    width: 400%;
+    animation: slide 16s infinite alternate linear; /*Duracion de cada foto al pasar automaticamente*/
+}
+
+.slider li{
+    list-style: none;/*Quitamos los puntos de la lista*/
+    width: 100%;
+}
+
+.slider img{
+    width: 100%;
+}
+
+/*Sirve para controlar los puntos donde esta cada imagen durante la animacion*/
+@keyframes slide {
+    0%{margin-left: 0%;}
+    20%{margin-left: 0%;}
+
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+
+    75%{margin-left: -300%;}
+    100%{margin-left: -300%;}
+}
+
+/*PIE DE PAGINA*/
+footer{
+    background-color: #DBDBDD;
+    width: 100%;
+    position: absolute;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
+
+#instagram{
+    float: right;
+    width: 60px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+#logo{
+    float: left;
+    margin-top: 10px;
+}
