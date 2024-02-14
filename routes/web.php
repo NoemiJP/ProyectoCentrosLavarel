@@ -31,4 +31,5 @@ Route::get("/experienciasUsuario", [ExperienciaController::class, "experienciasU
 Route::get("/registro",[UsuarioController::class,"registro"]);
 Route::post("/usuarios/registrar", [UsuarioController::class,"store"]);
 Route::get("/logout",[UsuarioController::class,"logout"]);
+Route::post("/altaExperiencia",[ExperienciaController::class,"guardar"]);
 

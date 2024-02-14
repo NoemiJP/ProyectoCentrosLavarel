@@ -13,7 +13,11 @@
         <label for="contrasena">Contraseña</label><br>
         <input type="password" name="contrasena" id="pass" /><br><br>
         <select name="centro">
-            <option value="IES Blas Cabrera Felipe">IES Blas Cabrera Felipe</option>
+            <option value="IBQ">IES Bernaldo de Quirós (IBQ)</option>
+            <option value="IBCF">IES Blas Cabrera Felipe (IBCF)</option>
+            <option value="IPCC">IES Pasqual Calbó i Caldés (IPCC)</option>
+            <option value="IPJB">IES Profesor Juan Bautista (IPJB)</option>
+            <option value="IMSIS">INS Manresa SIS (IMSIS) </option>
         </select><br><br>
         <input type="submit" value="Registrarse">
         <input type="hidden" name="rol" value="invitado">
