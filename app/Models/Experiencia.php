@@ -10,6 +10,6 @@ class Experiencia extends Model
     use HasFactory;
     protected $table="experiencias";
     protected $primaryKey="id";
-    protected $fillable=["titulo", "texto", "borrador","usuario_id"];
-    protected $hidden=["id"];
+    protected $fillable=["id", "titulo", "texto", "borrador","usuario_id"];
+    protected $hidden=[];
 }

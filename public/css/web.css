@@ -375,20 +375,26 @@ input:focus {
   border-radius: 10px;
   width: 80%;
 }
-
+.tituloPag{
+  margin-top: 5%;
+}
+.margen{
+  margin-bottom: 2%;
+}
 * {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
 
+/*Registros*/
 .seccionLogin {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 45vh;
+  min-height: 60vh;
   width: 100%;
-  background: url('../css/img/login.jpg') no-repeat;
+  background: url('../css/img/gotas.avif') no-repeat;
   background-position: center;
   background-size: cover;
 }
@@ -455,8 +461,6 @@ h2 {
   top: 20px;
 }
 
-
-
 .recordar {
   margin: -15px 0 15px;
   font-size: 0.9em;
@@ -492,6 +496,89 @@ h2 {
   font-weight: 600;
 }
 
+/*Formulario de registro */
+.formulario-registro {
+  width: 600px;
+  height: 880px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  margin: 5% auto; 
+  padding: 20px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario-registro h2 {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.formulario-registro .entrada {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.formulario-registro .entrada label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: #fff;
+  font-size: 1em;
+  transition: 0.5s;
+}
+
+.formulario-registro .entrada input,
+.formulario-registro .entrada select {
+  width: calc(100% - 22px);
+  height: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 10px;
+  color: #fff;
+  font-style: italic;
+  font-size: small;
+}
+
+
+.formulario-registro .boton {
+  width: calc(100% - 22px);
+  height: 40px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.formulario-registro .entrada select {
+  background: transparent;
+  color: #fff;
+}
+
+
+.formulario-registro .entrada select option {
+  background: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
+}
+
+.formulario-registro  .valores {
+  justify-content: center;
+  align-items: center; 
+  height: 100%; 
+  margin-top: 0;
+  margin: 0;
+}
 
 .registro {
   font-size: 0.9em; 
@@ -500,13 +587,11 @@ h2 {
   margin: 25px 0 10px;
 }
 
-
 .registro p a {
   text-decoration: none;
   color: #fff;
   font-weight: 600;
 }
-
 
 .registro p a:hover {
   text-decoration: underline;

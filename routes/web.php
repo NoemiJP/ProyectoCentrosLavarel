@@ -27,9 +27,12 @@ Route::get("/ipcc", [CentroController::class, "ipcc"]);
 Route::get("/ipjb", [CentroController::class, "ipjb"]);
 Route::get("/imsis", [CentroController::class, "imsis"]);
 Route::get("/experienciasAdmin", [ExperienciaController::class, "experienciasAdmin"]);
-Route::get("/experienciasUsuario", [ExperienciaController::class, "experienciasUsuario"]);
+Route::get("/experienciasUsuario/{id}", [ExperienciaController::class, "experienciasUsuario"]);
+Route::get("/experienciasUsuario", [ExperienciaController::class, "experienciasUsuarioNoLogin"]);
 Route::get("/registro",[UsuarioController::class,"registro"]);
 Route::post("/usuarios/registrar", [UsuarioController::class,"store"]);
 Route::get("/logout",[UsuarioController::class,"logout"]);
-Route::post("/altaExperiencia",[ExperienciaController::class,"guardar"]);
+Route::post("/altaExperiencia/{id}",[ExperienciaController::class,"guardar"]);
+Route::get("/listadoExperiencias",[ExperienciaController::class,"listado"]);
+Route::get("/experienciasAdmin/{id}",[ExperienciaController::class,"valido"]);
 

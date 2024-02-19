@@ -23,13 +23,52 @@ class UsuarioController extends Controller
     public function registro(){
         return response()->view("registro");
     }
-
     public function store(Request $request){
-        $usuario= new Usuario($request->all());
+        // Reglas de validación
+        $reglas = [
+            "nombre" => "required",
+            "apellidos" => "required",
+            "email" => "required|email|unique:usuarios",
+            "usuario" => "required|unique:usuarios",
+            "contrasena" => "required",
+            "centro"=> "required",
+        ];
+    
+        // Mensajes de error
+        $mensajes = [
+            "nombre.required" => "El campo nombre es obligatorio",
+            "apellidos.required" => "El campo apellidos es obligatorio",
+            "email.required" => "El campo correo electrónico es obligatorio",
+            "usuario.required" => "El campo usuario es obligatorio",
+            "usuario.unique" => "El usuario ya está registrado",
+            "contrasena.required" => "El campo contraseña es obligatorio",
+            "centro.required" => "Por favor, seleccione un centro",
+        ];
+    
+        // Validar los campos
+        $request->validate($reglas, $mensajes);
+    
+        // Si la validación es exitosa, registro al usuario
+        $usuario = new Usuario([
+            "nombre" => $request->nombre,
+            "apellidos" => $request->apellidos,
+            "email" => $request->email,
+            "usuario" => $request->usuario,
+            "contrasena" => $request->contrasena,
+            "centro"=> $request->centro,
+            "rol"=> $request->rol,
+        ]);
+        
         $usuario->save();
+    
+        // Redirigir.
         return response()->view('registroCorrecto');
     }
+    
+
+    
     public function logout(){
         return response()->view("portada");
     }
+    
 }
