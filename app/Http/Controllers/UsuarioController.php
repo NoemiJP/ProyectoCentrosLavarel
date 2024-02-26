@@ -20,7 +20,7 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::where("usuario", "=", $request->usuario)->where("contrasena", "=", $request->contrasena)->first();
         // meter en sesion
-        return response()->view("portada",["usuario"=>$usuario]);
+        return response()->view("inicio",["usuario"=>$usuario]);
     }
 
     public function registro(){
@@ -75,17 +75,15 @@ class UsuarioController extends Controller
 
     public function actualizarContraseña(Request $request,$id){
         $usuario= Usuario::find($id);
-        if($request->contraseña == $request->contraseña2){
-            $usuario->contrasena=$request->contraseña;
-            $usuario->save($usuario);
-        }
-        return response()->view("portada",["usuario"=>$usuario,"mensaje"=>"Se ha actualizado su contraseña correctamente"]);
+            $usuario->contrasena=$request->contrasena;
+            $usuario->save();
+        return response()->view("inicio",["usuario"=>$usuario,"mensaje"=>"Se ha actualizado su contraseña correctamente"]);
     }
     
 
     
     public function logout(){
-        return response()->view("portada",["mensaje"=>"Esperamos que vuelva pronto"]);
+        return response()->view("inicio",["mensaje"=>"Esperamos que vuelva pronto"]);
     }
     
 }

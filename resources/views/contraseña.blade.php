@@ -17,7 +17,7 @@
                     <h2>Cambiar Contraseña</h2>
                     <div class="entrada">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="password" name="contraseña" required placeholder="Contraseña">
+                        <input type="password" name="contrasena" required placeholder="Contraseña">
                     </div>
                     <div class="entrada">
                         <ion-icon name="lock-closed-outline"></ion-icon>

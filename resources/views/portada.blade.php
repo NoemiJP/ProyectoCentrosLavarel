@@ -98,10 +98,6 @@
         @yield('contenido')
     </section>
     
-    @if (!empty($mensaje))
-        <h1>{{$mensaje}}</h1>
-    </main>
-    @endif
     <footer>
         <a href="https://ibq.es/" target="_blank"><img id="ibq" src="../css/img/logoIBQ.webp" /></a>
         <a href="https://www.instagram.com/ecohuerto_ibq/" target="_blank"><img id="insta"
