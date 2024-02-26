@@ -10,6 +10,9 @@ class UsuarioController extends Controller
     public function index(){
         return response()->view("portada");
     }
+    public function inicio(){
+        return response()->view("inicio");
+    }
     public function usuarios(){
         return response()->view("login");
     }

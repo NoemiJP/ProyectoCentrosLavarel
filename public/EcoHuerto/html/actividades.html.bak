@@ -20,7 +20,7 @@
             <li><a href="./actividades.html" id="actividades">Actividades</a></li>
             <li><a href="./agenda.html" id="agenda">Agenda</a></li>
             <li><a href="./galeria.html"  id="galeria">Galería</a></li>
-            <li><a href="/calendario"  id="calendario">Calendario</a></li>
+
         </ul>
 
     </nav>

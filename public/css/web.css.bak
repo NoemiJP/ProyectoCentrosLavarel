@@ -126,13 +126,9 @@ footer #ibq {
   margin-top: 5%;
 }
 
-.portada{
-  flex: 70%;
-  font-size: 1.3rem;
-  border-radius: 10px;
-  border: 1px solid #334f53;
-  padding: 0 2% 0 2%;
-  margin: 0.3% 0 0 0;
+.portada {
+  display: flex;
+  margin-top: 6%;
 
 }
 

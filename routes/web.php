@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\ExperienciaController;
 use App\Http\Controllers\UsuarioController;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/",[UsuarioController::class,"index"]);
+Route::get("/",[UsuarioController::class,"inicio"]);
 Route::get("/usuarios",[UsuarioController::class,"usuarios"]);
 Route::post("/usuarios/login",[UsuarioController::class,"login"]);
 Route::get("/ibcf", [CentroController::class, "ibcf"]);
@@ -36,3 +37,4 @@ Route::post("/altaExperiencia/{id}",[ExperienciaController::class,"guardar"]);
 Route::get("/listadoExperiencias",[ExperienciaController::class,"listado"]);
 Route::get("/experienciasAdmin/{id}",[ExperienciaController::class,"valido"]);
 
+Route::get("/calendario", [CalendarioController::class,"index"]);
