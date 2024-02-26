@@ -1,7 +1,8 @@
 @extends('portada')
 
 @section('contenido')
-    <h1>Experiencias</h1>
+<main class="margen2">
+    <h1>Nueva Experiencia</h1>
     @if (!empty($usuario))
         <form id="formulario" enctype="multipart/form-data">
             @csrf
@@ -17,8 +18,8 @@
             <input type="submit" value="Guardar Experiencia">
             <input type="hidden" name="borrador" value="1">
             <input type="hidden" id="usuario" value="{{ $usuario->id }}">
-            <a href="/listadoExperiencias" >CARGANDO</a>
         </form>
+</main>
     @else
         <p>Debes iniciar sesión para agregar una experiencia</p>
     @endif

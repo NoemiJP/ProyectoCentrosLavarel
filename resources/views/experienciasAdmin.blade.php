@@ -1,10 +1,10 @@
 @extends('portada')
 @section('contenido')
+<main class="margen ancho">
     <h1 class="tituloPag">Experiencias Administrador</h1>
     <div class="row justify-content-center">
-      <script>console.log({{$experiencias}})</script>
     @foreach ($experiencias as $experiencia)
-    <div class="card col-6 align-self-center margen" style="width: 18rem;">
+    <div class="card col-12 align-self-center margen" style="width: 18rem;">
         <h5 class="card-header">{{$experiencia->titulo}}</h5>
         <div class="card-body">
           <p class="card-title">{{$experiencia->texto}}</p>
@@ -14,9 +14,10 @@
             <p class="card-text"><img src="data:image/jpg; base64, {{ base64_encode($archivo->archivo)}}" alt="img experiencia"></p>
             @endif
           @endforeach
-          <a href="/experienciasAdmin/{{$experiencia->id}}" class="btn btn-success float-right">Validar Experiencia</a>
+          <a href="/validar/{{$experiencia->id}}" class="btn btn-success float-right">Validar Experiencia</a>
         </div>
       </div>
     @endforeach
 </div>
+</main>
 @endsection

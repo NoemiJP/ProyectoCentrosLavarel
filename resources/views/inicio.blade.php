@@ -1,6 +1,7 @@
 @extends('portada')
 @section('contenido')
-<section class="portada">
+
+<main class="margen2">
 <p>En las últimas décadas el consumo mundial de agua ha aumentado alrededor del 1% anual y se prevé que siga
     creciendo a este ritmo hasta el 2050. El aumento de sequías extremas y de larga duración estresa a los
     ecosistemas
@@ -22,5 +23,5 @@
     nuestro
     país…Sólo tenemos un planeta, ¡cuidémoslo!
 </p>
-</section>
+</main>
 @endsection

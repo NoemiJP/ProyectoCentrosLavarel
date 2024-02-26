@@ -67,11 +67,25 @@ class UsuarioController extends Controller
         // Redirigir.
         return response()->view('registroCorrecto');
     }
+
+    public function cambiarContraseña($id){
+        $usuario= Usuario::find($id);
+        return response()->view("contraseña",["usuario"=>$usuario]);
+    }
+
+    public function actualizarContraseña(Request $request,$id){
+        $usuario= Usuario::find($id);
+        if($request->contraseña == $request->contraseña2){
+            $usuario->contrasena=$request->contraseña;
+            $usuario->save($usuario);
+        }
+        return response()->view("portada",["usuario"=>$usuario,"mensaje"=>"Se ha actualizado su contraseña correctamente"]);
+    }
     
 
     
     public function logout(){
-        return response()->view("portada");
+        return response()->view("portada",["mensaje"=>"Esperamos que vuelva pronto"]);
     }
     
 }

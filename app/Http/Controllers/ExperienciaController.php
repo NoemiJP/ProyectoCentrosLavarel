@@ -33,8 +33,10 @@ class ExperienciaController extends Controller
         return response()->view("experienciasAdmin",["experiencias"=>$experiencias]);
     }*/
 
-    public function experienciasAdmin()
+    public function experienciasAdmin($id)
     {
+        
+        $usuario= Usuario::find($id);
         $experiencias = DB::table('experiencias')
         ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
         ->where("borrador","=","1")
@@ -42,7 +44,7 @@ class ExperienciaController extends Controller
         ->get();
         $archivos = Archivo::all();
         
-        return response()->view("experienciasAdmin",["experiencias"=>$experiencias, "archivos" =>$archivos]);
+        return response()->view("experienciasAdmin",["experiencias"=>$experiencias, "archivos" =>$archivos,"usuario" => $usuario]);
     }
 
     public function experienciasUsuario($id)
@@ -87,6 +89,18 @@ class ExperienciaController extends Controller
         $archivos = Archivo::all();
         
         return response()->view("listadoExperiencias",["experiencias"=>$experiencias, "archivos" =>$archivos]);
+    }
+
+    public function listadoRegistro($id){
+        $usuario= Usuario::find($id);
+        $experiencias = DB::table('experiencias')
+        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
+        ->where("borrador","=","0")
+        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro')
+        ->get();
+        $archivos = Archivo::all();
+        
+        return response()->view("listadoExperiencias",["experiencias"=>$experiencias, "archivos" =>$archivos,"usuario"=>$usuario]);
     }
 
 
