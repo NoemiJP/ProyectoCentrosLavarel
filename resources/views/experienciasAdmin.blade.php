@@ -1,6 +1,6 @@
 @extends('portada')
 @section('contenido')
-<main class="margen ancho">
+<main class="margen2 ancho">
     <h1 class="tituloPag">Experiencias Administrador</h1>
     <div class="row justify-content-center">
     @foreach ($experiencias as $experiencia)
@@ -14,7 +14,7 @@
             <p class="card-text"><img src="data:image/jpg; base64, {{ base64_encode($archivo->archivo)}}" alt="img experiencia"></p>
             @endif
           @endforeach
-          <a href="/validar/{{$experiencia->id}}" class="btn btn-success float-right">Validar Experiencia</a>
+          <a href="/validar/{{$experiencia->id}}/{{$usuario->id}}" class="btn btn-success float-right">Validar Experiencia</a>
         </div>
       </div>
     @endforeach

@@ -40,7 +40,8 @@
               Experiencias
             </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/experienciasAdmin/{{$usuario->id}}">Listado de Experiencias</a>
+            <a class="dropdown-item" href="/experienciasAdmin/{{$usuario->id}}">Validar Experiencias</a>
+            <a class="dropdown-item" href="/experienciasUsuario/{{$usuario->id}}">Listado de Experiencias</a>
             <a class="dropdown-item" href="/crearExperiencias/{{$usuario->id}}">Nueva Experiencia</a>
         </div>
     </div>

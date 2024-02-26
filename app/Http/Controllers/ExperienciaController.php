@@ -59,12 +59,13 @@ class ExperienciaController extends Controller
         return response()->view("experienciasUsuario");
     }
 
-    public function valido($id)
+    public function valido($id,$idUsuario)
     {
+        $usuario= Usuario::find($idUsuario);
         $exp = Experiencia::find($id);
         $exp->borrador = "0";
         $exp->save();
-        return redirect()->action([ExperienciaController::class, "experienciasAdmin"]);
+        return redirect()->action([ExperienciaController::class,'experienciasAdmin'], ['id' => $usuario->id]);
     }
 
     /*public function listado(){
@@ -84,7 +85,7 @@ class ExperienciaController extends Controller
         $experiencias = DB::table('experiencias')
         ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
         ->where("borrador","=","0")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro')
+        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro','usuarios.usuario')
         ->get();
         $archivos = Archivo::all();
         

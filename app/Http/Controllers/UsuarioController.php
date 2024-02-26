@@ -65,7 +65,7 @@ class UsuarioController extends Controller
         $usuario->save();
     
         // Redirigir.
-        return response()->view('registroCorrecto');
+        return response()->view('inicio',["usuario"=>$usuario,"mensaje"=>"Se ha registrado correctamente en el sistema"]);
     }
 
     public function cambiarContraseña($id){

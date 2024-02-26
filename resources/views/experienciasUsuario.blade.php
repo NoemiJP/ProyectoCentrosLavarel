@@ -43,7 +43,7 @@
                     data: formData,
                     success: function(response) {
                         console.log(response);
-                        window.location.href="/listadoExperiencias";
+                        window.location.href="/experienciasUsuario/"+idUsuario;
                     }
                 });
             });

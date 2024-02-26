@@ -43,6 +43,6 @@ Route::get("/listadoExperiencias",[ExperienciaController::class,"listado"]);
 Route::get("/experienciasUsuario/{id}", [ExperienciaController::class, "listadoRegistro"]);
 Route::get("/experienciasAdmin/{id}", [ExperienciaController::class, "experienciasAdmin"]);
 Route::get("/experienciasUsuario",[ExperienciaController::class,"listado"]);
-Route::get("/validar/{id}",[ExperienciaController::class,"valido"]);
+Route::get("/validar/{id}/{idUsuario}",[ExperienciaController::class,"valido"]);
 
 Route::get("/calendario", [CalendarioController::class,"index"]);
