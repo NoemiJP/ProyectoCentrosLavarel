@@ -91,8 +91,10 @@ class ExperienciaController extends Controller
         $exp->titulo = $request->titulo;
         $exp->usuario_id = $id;
         $exp->save();
+        
+        $file = $request->file('adjunto');
         // Guarda el archivo adjunto
-        if(isset($request->file)){
+        if($file != null){
         $arch = new Archivo();
         $file = $request->file('adjunto');
         $fileData = file_get_contents($file->getRealPath());
