@@ -10,120 +10,100 @@ use Illuminate\Support\Facades\DB;
 
 class ExperienciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    /*public function experienciasAdmin()
-    {
-        $experiencias = DB::table('experiencias')
-        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
-        ->join('archivos', 'experiencias.id', '=', 'archivos.experiencias_id')
-        ->where("borrador","=","1")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','archivos.archivo','usuarios.centro')
-        ->get();
-        
-        return response()->view("experienciasAdmin",["experiencias"=>$experiencias]);
-    }*/
-
     public function experienciasAdmin($id)
     {
-        
-        $usuario= Usuario::find($id);
+        // Se busca el usuario, las experiencias donde borrador = 1 y todos los archivos, se pasa la información a la vista
+        $usuario = Usuario::find($id);
         $experiencias = DB::table('experiencias')
-        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
-        ->where("borrador","=","1")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro')
-        ->get();
+            ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
+            ->where("borrador", "=", "1")
+            ->select("experiencias.id", 'experiencias.titulo', 'experiencias.texto', 'usuarios.centro')
+            ->get();
         $archivos = Archivo::all();
-        
-        return response()->view("experienciasAdmin",["experiencias"=>$experiencias, "archivos" =>$archivos,"usuario" => $usuario]);
+
+        return response()->view("experienciasAdmin", ["experiencias" => $experiencias, "archivos" => $archivos, "usuario" => $usuario]);
     }
 
     public function experienciasUsuario($id)
     {
-        
-        $usuario= Usuario::find($id);
-    return response()->view("experienciasUsuario", ["usuario" => $usuario]);
+        //Busca el usuario y se lo manda a la vista
+        $usuario = Usuario::find($id);
+        return response()->view("experienciasUsuario", ["usuario" => $usuario]);
     }
 
     public function experienciasUsuarioNoLogin()
     {
+        // Cargar la vista
         return response()->view("experienciasUsuario");
     }
 
-    public function valido($id,$idUsuario)
+    public function valido($id, $idUsuario)
     {
-        $usuario= Usuario::find($idUsuario);
+        // Se busca el usuario y la experiencia, se modifica el estado borrador de la experiencia a 0 y se actualiza en BBDD
+        $usuario = Usuario::find($idUsuario);
         $exp = Experiencia::find($id);
         $exp->borrador = "0";
         $exp->save();
-        return redirect()->action([ExperienciaController::class,'experienciasAdmin'], ['id' => $usuario->id]);
+        return redirect()->action([ExperienciaController::class, 'experienciasAdmin'], ['id' => $usuario->id]);
     }
 
-    /*public function listado(){
-        $experiencias = DB::table('experiencias')
-        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
-        ->join('archivos', 'experiencias.id', '=', 'archivos.experiencias_id')
-        ->where("borrador","=","0")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','archivos.archivo','usuarios.centro')
-        ->get();
-        
-      
-    //return response()->view("experienciasUsuario", ["usuario" => $usuario, "experiencias"=>$experiencias]);
-        return response() -> view("listadoExperiencias", ["experiencias"=>$experiencias]);
-    }*/
 
-    public function listado(){
+    public function listado()
+    {
+        // Se buscan las experiencias en borrador=0 y se pasan a la vista
         $experiencias = DB::table('experiencias')
-        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
-        ->where("borrador","=","0")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro','usuarios.usuario')
-        ->get();
+            ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
+            ->where("borrador", "=", "0")
+            ->select("experiencias.id", 'experiencias.titulo', 'experiencias.texto', 'usuarios.centro', 'usuarios.usuario')
+            ->get();
         $archivos = Archivo::all();
-        
-        return response()->view("listadoExperiencias",["experiencias"=>$experiencias, "archivos" =>$archivos]);
+
+        return response()->view("listadoExperiencias", ["experiencias" => $experiencias, "archivos" => $archivos]);
     }
 
-    public function listadoRegistro($id){
-        $usuario= Usuario::find($id);
+    public function listadoRegistro($id)
+    {
+        // Se buscan el usuario logueado, las experiencias y los archivos y se pasan a la vista
+        $usuario = Usuario::find($id);
         $experiencias = DB::table('experiencias')
-        ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
-        ->where("borrador","=","0")
-        ->select("experiencias.id",'experiencias.titulo', 'experiencias.texto','usuarios.centro')
-        ->get();
+            ->join('usuarios', 'experiencias.usuario_id', '=', 'usuarios.id')
+            ->where("borrador", "=", "0")
+            ->select("experiencias.id", 'experiencias.titulo', 'experiencias.texto', 'usuarios.centro', 'usuarios.usuario')
+            ->get();
         $archivos = Archivo::all();
-        
-        return response()->view("listadoExperiencias",["experiencias"=>$experiencias, "archivos" =>$archivos,"usuario"=>$usuario]);
+
+        return response()->view("listadoExperiencias", ["experiencias" => $experiencias, "archivos" => $archivos, "usuario" => $usuario]);
     }
 
 
-    public function guardar(Request $request, $id){
+    public function guardar(Request $request, $id)
+    {
         //Crea la experiencia
         $exp = new Experiencia();
         $exp->borrador = $request->borrador;
         $exp->texto = $request->texto;
         $exp->titulo = $request->titulo;
-        $exp -> usuario_id = $id;
+        $exp->usuario_id = $id;
         $exp->save();
         // Guarda el archivo adjunto
+        if(isset($request->file)){
         $arch = new Archivo();
         $file = $request->file('adjunto');
         $fileData = file_get_contents($file->getRealPath());
         if ($fileData !== false) {
-        $arch->archivo = $fileData;
-        $arch -> experiencias_id = $exp -> id;
-        $arch -> save();
+            $arch->archivo = $fileData;
+            $arch->experiencias_id = $exp->id;
+            $arch->save();
         }
-        $usuario= Usuario::find($id);
+    }
+        // Recoge el usuario y se pasa el usuario en formato JSON
+        $usuario = Usuario::find($id);
         return response()->json($usuario);
-        //return response()->view("experienciasUsuario", ["usuario" => $usuario]);
     }
 }

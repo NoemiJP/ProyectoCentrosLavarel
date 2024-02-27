@@ -1,14 +1,8 @@
 
     @extends('portada')
     @section('contenido')
-     <!--<form method="POST" style="margin-top:3%;height: 27vh;margin-left:40%;" action="/usuarios/login">
-        @csrf
-        <label for="usuario">Usuario</label><br>
-        <input type="text" name="usuario" id="usu" /><br><br>
-        <label for="contrasena">Contraseña</label><br>
-        <input type="password" name="contrasena" id="pass" /><br><br>
-        <input type="submit" value="Login">
-    </form>-->
+     
+     <!-- Formulario para cambiar la contraseña -->
     <section class="seccionLogin">
         <div class="formulario">
             <div class="valores"> 
@@ -23,15 +17,10 @@
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <input type="password" name="contrasena2" required placeholder="Repita su contraseña">
                     </div>
-                    <!--  <div class="recordar">
-                        <label for="recordar"><input type="checkbox">Recordar</label>
-                        <a href="#">Olvidé mi contraseña</a>
-                    </div> -->
+                    
                    
                     <button class="boton" type="submit">Actualizar Contraseña</button>
-                    <!--  <div class="registro">
-                        <p>No tengo una cuenta <a href="#">Registrarse</a></p>
-                    </div> -->
+                  
                    
                 </form>
             </div>

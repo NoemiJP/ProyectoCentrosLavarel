@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </head>
 
 <header class="encabezado">
@@ -26,79 +30,94 @@
 
 
 <body>
+    <!-- Barra de navegación -->
     <nav class="menu">
         <a class="active encima" href="/">Inicio</a>
         <a class="inactive encima" href="{{ asset('EcoHuerto/html/portada.html') }}">EcoHuerto</a>
 
+        <!-- Sección para usuarios, si no esta vacío y es administrador.
+        Se utiliza para pasar el usuario admin por todas las páginas-->
         @if (!empty($usuario) && $usuario->rol == 'admin')
-        <a class="inactive encima" href="/ibcf/{{ $usuario->id }}">IBCF</a>
-        <a class="inactive encima" href="/ipcc/{{ $usuario->id }}">IPCC</a>
-        <a class="inactive encima" href="/ipjb/{{ $usuario->id }}">IPJB</a>
-        <a class="inactive encima" href="/imsis/{{ $usuario->id }}">IMSIS</a>
-        <div class="dropdown">
-            <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Experiencias
-            </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/experienciasAdmin/{{$usuario->id}}">Validar Experiencias</a>
-            <a class="dropdown-item" href="/experienciasUsuario/{{$usuario->id}}">Listado de Experiencias</a>
-            <a class="dropdown-item" href="/crearExperiencias/{{$usuario->id}}">Nueva Experiencia</a>
-        </div>
-    </div>
+            <a class="inactive encima" href="/ibcf/{{ $usuario->id }}">IBCF</a>
+            <a class="inactive encima" href="/ipcc/{{ $usuario->id }}">IPCC</a>
+            <a class="inactive encima" href="/ipjb/{{ $usuario->id }}">IPJB</a>
+            <a class="inactive encima" href="/imsis/{{ $usuario->id }}">IMSIS</a>
             <div class="dropdown">
-                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Experiencias
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/experienciasAdmin/{{ $usuario->id }}">Validar Experiencias</a>
+                    <a class="dropdown-item" href="/experienciasUsuario/{{ $usuario->id }}">Listado de Experiencias</a>
+                    <a class="dropdown-item" href="/crearExperiencias/{{ $usuario->id }}">Nueva Experiencia</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Hola {{ $usuario->usuario }}
                 </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/cambiarContraseña/{{ $usuario->id }}">Cambiar Contraseña</a>
-                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/cambiarContraseña/{{ $usuario->id }}">Cambiar Contraseña</a>
+                    <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                </div>
             </div>
-            </div>
+
+            <!-- Sección para usuarios, si no esta vacío y es invitadoç
+            Se utiliza para pasar el usuario invitado por todas las páginas, con el id-->
         @elseif (!empty($usuario) && $usuario->rol == 'invitado')
-        <a class="inactive encima" href="/ibcf/{{ $usuario->id }}">IBCF</a>
-        <a class="inactive encima" href="/ipcc/{{ $usuario->id }}">IPCC</a>
-        <a class="inactive encima" href="/ipjb/{{ $usuario->id }}">IPJB</a>
-        <a class="inactive encima" href="/imsis/{{ $usuario->id }}">IMSIS</a>
-        <div class="dropdown">
-            <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Experiencias
-            </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/experienciasUsuario/{{$usuario->id}}">Listado de Experiencias</a>
-            <a class="dropdown-item" href="/crearExperiencias/{{$usuario->id}}">Nueva Experiencia</a>
-        </div>
-    </div>
+            <a class="inactive encima" href="/ibcf/{{ $usuario->id }}">IBCF</a>
+            <a class="inactive encima" href="/ipcc/{{ $usuario->id }}">IPCC</a>
+            <a class="inactive encima" href="/ipjb/{{ $usuario->id }}">IPJB</a>
+            <a class="inactive encima" href="/imsis/{{ $usuario->id }}">IMSIS</a>
             <div class="dropdown">
-                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Experiencias
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/experienciasUsuario/{{ $usuario->id }}">Listado de
+                        Experiencias</a>
+                    <a class="dropdown-item" href="/crearExperiencias/{{ $usuario->id }}">Nueva Experiencia</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Hola {{ $usuario->usuario }}
                 </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/cambiarContraseña/{{ $usuario->id }}">Cambiar Contraseña</a>
-                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/cambiarContraseña/{{ $usuario->id }}">Cambiar Contraseña</a>
+                    <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                </div>
             </div>
-            </div>
+
+            <!--Si no hay usuario-->
         @else
-        <a class="inactive encima" href="/ibcf">IBCF</a>
-        <a class="inactive encima" href="/ipcc">IPCC</a>
-        <a class="inactive encima" href="/ipjb">IPJB</a>
-        <a class="inactive encima" href="/imsis">IMSIS</a>
+            <a class="inactive encima" href="/ibcf">IBCF</a>
+            <a class="inactive encima" href="/ipcc">IPCC</a>
+            <a class="inactive encima" href="/ipjb">IPJB</a>
+            <a class="inactive encima" href="/imsis">IMSIS</a>
             <a class="inactive encima" href="/experienciasUsuario">Experiencias</a>
             <div class="dropdown">
-                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Área Personal
+                <button class="btnMenu dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Área Personal
                 </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/usuarios">Iniciar Sesión</a>
-                <a class="dropdown-item" href="/registro">Registrarse</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/usuarios">Iniciar Sesión</a>
+                    <a class="dropdown-item" href="/registro">Registrarse</a>
+                </div>
             </div>
-        </div>
         @endif
 
     </nav>
+      <!--Sección que se reemplaza en cada página con la nueva definida-->
     <section class="contenido">
         @yield('contenido')
     </section>
-    
+
     <footer>
         <a href="https://ibq.es/" target="_blank"><img id="ibq" src="../css/img/logoIBQ.webp" /></a>
         <a href="https://www.instagram.com/ecohuerto_ibq/" target="_blank"><img id="insta"

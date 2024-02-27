@@ -2,9 +2,11 @@
 @section('contenido')
 
 <main class="margen2">
+    <!-- Verifica si hay un mensaje definido (Contraseña cambiada, usuario registrado) -->
     @if (!empty($mensaje))
         <h1>{{$mensaje}}</h1>
-    </main>
+
+     <!-- Si no hay un mensaje, muestra información-->
     @else
     <p>En las últimas décadas el consumo mundial de agua ha aumentado alrededor del 1% anual y se prevé que siga
         creciendo a este ritmo hasta el 2050. El aumento de sequías extremas y de larga duración estresa a los

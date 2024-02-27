@@ -2,6 +2,7 @@
 @section('contenido')
     
     <main class="margen2">
+          <!--Página informativa de ese centro-->
         <h1>INS Manresa SIS (IMSIS)</h1>
         <p>Agua, vida y bienestar es un proyecto interdisciplinar en qué a partir de unos intereses comunes cada centro los
             desarrolla en función de su entorno, haciendo hincapié en las necesidades locales. El alumnado destinatario varía
